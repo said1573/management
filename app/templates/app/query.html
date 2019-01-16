@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog - Start Bootstrap Theme</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'app/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'app/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'app/css/clean-blog.min.css'%}" rel="stylesheet">
+    <style>
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %">H. MQ</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link"  href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  href="{% url 'logout' %}">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('../../static/app/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>조회하기</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<form>
+    <!-- Main Content -->
+    <div class="container" style="text-align:center">
+        <div class="row">
+            <div class="col-8 mx-auto">
+                <div class="container" style="text-align:left">
+                    <label style="text-font:bold">조회하기</label>
+                </div>
+                <hr>
+                <br>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="query" class="form-control" placeholder="주소" required="required"
+                               autofocus="autofocus">
+                    </div>
+                </div>
+
+
+                <hr>
+                <br>
+
+            </div>
+        </div>
+    </div>
+    {% csrf_token %}
+</form>
+
+<div class="container" style="text-align:center">
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <button id='query' onclick="myFunction()" class="btn btn-dark btn-block">조회하기</button>
+            <br><br><br>
+            <div id="snackbar">주소가 등록되어 있지 않습니다.</div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'app/vendor/jquery/jquery.min.js'%}"></script>
+<script src="{% static 'app/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+<!-- Custom scripts for this template -->
+<script src="{% static 'app/js/clean-blog.min.js'%}"></script>
+
+</body>
+<script>
+$('#query').click(function(){
+    $.ajax({
+        url : '/app/query/',
+        type : 'post',
+        data:$('form').serialize(),
+         success:function(res){
+            if(res.result == "success"){
+                location = '/app/query_result'
+                }else{
+                    alert(res.result)
+                     location = '/app/query'
+                }
+            }
+    });
+    return false
+});
+
+var input = document.getElementById("query");
+
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("login").click();
+    }
+});
+
+
+
+
+</script>
+<script>
+
+
+function myFunction() {
+
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+</script>
+</html>

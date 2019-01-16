@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="{% static 'app/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+</head>
+<style>
+    table, td, th{
+        border: 1px solid black;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: center;
+    }
+
+    th{font-size:20px; background:#d2d2d2;}
+    td{font-size:20px;}
+</style>
+
+<body>
+<form method="post">
+    {% for record in records %}
+    <div class="mx-auto"  >
+        <h1 style="text-align:center">소방 시설 점검표</h1><br>
+    </div>
+    <div class="wrapper" style="border:solid; padding:20px;">
+        <div class="col-12 mx-auto">
+
+            <tr>
+                <td>&nbsp&nbsp&nbsp점검일자&nbsp : &nbsp</td>
+                <td>{{record.time}}</td>
+                <br><br>
+            </tr>
+
+            <tr>
+                <td>&nbsp&nbsp&nbsp점검자&nbsp : &nbsp</td>
+                <td>{{records.name}}</td>
+                <br><br>
+            </tr>
+              <tr>
+                <td>&nbsp&nbsp&nbsp건물 주소&nbsp : &nbsp</td>
+                <td>{{records.address}}</td>
+                <br><br>
+            </tr>
+            <tr>
+                <td>&nbsp&nbsp&nbsp건물이름&nbsp : &nbsp</td>
+                <td>{{records.buildingname}}</td>
+                <br><br>
+            </tr>
+            <tr>
+                <td>&nbsp&nbsp&nbsp건물 소유자&nbsp : &nbsp</td>
+                <td>{{records.own}}</td>
+                <br><br>
+            </tr>
+
+            <table style="border:1px solid;" style="text-align: center;">
+
+                <tr>
+                    <th style="width:100px;">구분</th>
+                    <th style="width:500px;">점검내용</th>
+                    <th style="width:600px;">점검결과</th>
+                </tr>
+
+                <tr></tr>
+                <tr></tr>
+
+
+                <tr>
+                    <td rowspan="4" style="background:#d2d2d2;">소방<br><br>시설</td>
+                    <td height="70">연기감지기가 정상작동 여부</td>
+                    <td>{{records.num1}}</td>
+                </tr>
+                <tr>
+                    <td height="70">화재경보벨 동작여부</td>
+                    <td>{{records.num2}}</td>
+                </tr>
+                <tr>
+                    <td height="70">소화기 위치 및 사용방법 숙지 여부</td>
+                    <td>{{records.num3}}</td>
+                </tr>
+                <tr>
+                    <td height="70">소화기 및 소화전 정상 작동 여부</td>
+                    <td>{{records.num4}}</td>
+                </tr>
+
+
+                <tr>
+                    <td rowspan="4" style="background:#d2d2d2;">전기<br><br>시설</td>
+                    <td height="70">전기기구 및 가전품 K마크 여부</td>
+                    <td>{{records.num5}}</td>
+                </tr>
+                <tr>
+                    <td height="70">누전차단기의 정상작동 여부</td>
+                    <td>{{records.num6}}</td>
+                </tr>
+                <tr>
+                    <td height="70">전선 피복 상태</td>
+                    <td>{{records.num7}}</td>
+                </tr>
+                <tr>
+                    <td height="70">조명의 이상 여부</td>
+                    <td>{{records.num8}}</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" style="background:#d2d2d2;">가스<br><br>시설</td>
+                    <td height="70">가스경보기 정상 동작여부</td>
+                    <td>{{records.num9}}</td>
+                </tr>
+                <tr>
+                    <td height="70">가스누설 여부</td>
+                    <td>{{records.num10}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    {% endfor %}
+    {% csrf_token %}
+</form>
+
+<div class="col-4 mx-auto">
+    <br><br>
+    <button id='record' name='record' class="btn btn-dark btn-block">보내기</button>
+</div>
+<br><br><br>
+</body>
+<script>
+    $('#record').click(function(){
+        $.ajax({
+            url: 'app/email/',
+            type: 'post',
+            success:function(res){
+                if(res.result == 'success'){
+                    alert(res.result)
+                    location = '/app/home'
+                    }else{
+                        alert(res.result)
+                    }
+                }
+        });
+        return false
+    });
+
+</script>
+
+</html>

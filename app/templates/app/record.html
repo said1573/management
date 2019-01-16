@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'app/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'app/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'app/css/clean-blog.min.css'%}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">H . MQ</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('../../static/app/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Record</h1>
+                    <span class="subheading"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<form name="form" id="form" method="post">
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-8 mx-auto">
+                <div class="form-group">
+                    <label style="font-weight:bold">점검자</label>
+                    <hr>
+                    <div class="form-label-group">
+                        <input type="text" name='name' class="form-control" placeholder="점검자"
+                               required="required"><br><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label style="font-weight:bold">주소</label>
+                    <hr>
+                    <div class="form-label-group">
+                        <input type="text" name='address' class="form-control" placeholder="건물 주소"
+                               required="required"><br><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label style="font-weight:bold">건물 정보</label>
+                    <hr>
+                    <div class="form-label-group">
+                        <input type="text" name='buildingname' class="form-control" placeholder="건물이름"
+                               required="required"><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name='own' class="form-control" placeholder="건물주"
+                               required="required"><br><br>
+                    </div>
+                </div>
+
+                <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                <div class="form-group">
+                    <label style="font-weight:bold">소방시설</label>
+                    <hr>
+                    <div class="form-label-group">
+                        <input type="text" name='num1' class="form-control" placeholder="연기감지기가 정상작동 여부"
+                               required="required"><br><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name='num2' class="form-control" placeholder="화재경보벨 동작여부"
+                               required="required"><br><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name='num3' class="form-control" placeholder="소화기 위치 및 사용방법 숙지 여부"
+                               required="required"><br><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name='num4' class="form-control" placeholder="소화기 및 소화전 정상 작동 여부"
+                               required="required"><br><br>
+                    </div>
+                </div>
+
+                <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                <div class="form-group">
+                    <label style="font-weight:bold">전기시설</label>
+                    <hr>
+                    <div class="form-label-group">
+                        <input type="text" name='num5' class="form-control" placeholder="전기기구 및 가전품 K마크 여부"
+                               required="required"><br><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name='num6' class="form-control" placeholder="누전차단기의 정상작동 여부"
+                               required="required"><br><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name='num7' class="form-control" placeholder="전선 피복 상태"
+                               required="required"><br><br>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="form-label-group">
+                        <input type="text" name='num8' class="form-control" placeholder="조명의 이상 여부"
+                               required="required"><br><br>
+                    </div>
+                </div>
+                <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                <div class="form-group">
+                    <label style="font-weight:bold">가스시설</label>
+                    <hr>
+                    <div class="form-label-group">
+                        <input type="text" name='num9' class="form-control" placeholder="가스경보기 정상 동작여부"
+                               required="required"><br><br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" id="num10" name='num10' class="form-control" placeholder="가스누설 여부"
+                               required="required"><br><br>
+                    </div>
+                </div>
+
+
+                <button id='record' class="btn btn-dark btn-block">등록하기</button>
+                <br><br><br>
+            </div>
+            <input type="hidden" name="resultType" value="4"/>
+        </div>
+    </div>
+
+    {% csrf_token %}
+
+</form>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'app/vendor/jquery/jquery.min.js'%}"></script>
+<script src="{% static 'app/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Custom scripts for this template -->
+<script src="{% static 'app/js/clean-blog.min.js'%}"></script>
+
+</body>
+<script>
+ $('#record').click(function() {
+        $.ajax({
+          url: '/app/record/',
+          type: 'post',
+          data: $('form').serialize(),
+          success: function(res) {
+            if(res.result == '등록완료') {
+                alert(res.result)
+              location = '/app/doc'
+            }else{
+            alert(res.result)
+            }
+          }
+        })
+        return false
+      })
+
+var input = document.getElementById("num10");
+
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("login").click();
+    }
+});
+
+
+
+
+</script>
+</html>
