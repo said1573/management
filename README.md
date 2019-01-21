@@ -1,1 +1,8 @@
 "# management" 
+"# valkyrie" 
+"# valkyrie2" 
+"# valkyrie2" 
+"# eletornics" 
+"# eletornics" 
+"# eletronics" 
+"# eletronics" 
